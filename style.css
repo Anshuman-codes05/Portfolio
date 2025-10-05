@@ -315,6 +315,9 @@
      background: radial-gradient(1200px 400px at 90% 0%, rgba(255, 216, 110, 0.06), transparent 60%),
                  radial-gradient(1000px 350px at 10% 100%, rgba(110, 255, 240, 0.05), transparent 60%);
    }
+  #about::before {
+     background: none;
+   }
 
    /* Section divider */
    .section-divider {
@@ -694,5 +697,6 @@
    .scroll-to-top.show {
      display: block;
    }
+
 
 
