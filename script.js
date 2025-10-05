@@ -249,7 +249,7 @@
    // Test function to check if modal works
    function testImageModal() {
      console.log('Testing image modal...');
-     openImageModal('../projects/mood-tracker-screenshot.png');
+     openImageModal('assets/projects/mood-tracker-screenshot.png');
    }
 
    // Close image modal when clicking outside of it
