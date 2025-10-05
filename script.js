@@ -265,6 +265,26 @@
 
    }
 
+   // Hamburger menu toggle
+   const hamburger = document.getElementById('hamburger');
+   const navMenu = document.getElementById('nav-menu');
+   if(hamburger && navMenu){
+     hamburger.addEventListener('click', () => {
+       navMenu.classList.toggle('active');
+       hamburger.classList.toggle('active');
+     });
+
+     // Close menu when link is clicked
+     navMenu.querySelectorAll('a').forEach(link => {
+       link.addEventListener('click', () => {
+         navMenu.classList.remove('active');
+         hamburger.classList.remove('active');
+       });
+     });
+   }
+
+
+
 
 
 
