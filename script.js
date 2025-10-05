@@ -163,7 +163,22 @@
    let snakeTimer, snake, dir, food, score;
    function startSnake(){
      const c = document.getElementById('snake'); if(!c) return; const ctx = c.getContext('2d');
-     const w = c.width, h = c.height, size = 16, cols = Math.floor(w/size), rows = Math.floor(h/size);
+     const snakeArea = c.parentElement;
+     // Add controls only on mobile
+     if(window.innerWidth < 769 && !snakeArea.querySelector('.snake-controls')){
+       const controls = document.createElement('div');
+       controls.className = 'snake-controls';
+       controls.innerHTML = `
+         <button class="snake-btn" onclick="changeDirection('up')">↑</button>
+         <div>
+           <button class="snake-btn" onclick="changeDirection('left')">←</button>
+           <button class="snake-btn" onclick="changeDirection('right')">→</button>
+         </div>
+         <button class="snake-btn" onclick="changeDirection('down')">↓</button>
+       `;
+       snakeArea.insertBefore(controls, c.nextSibling);
+     }
+      const w = c.width, h = c.height, size = 16, cols = Math.floor(w/size), rows = Math.floor(h/size);
      snake = [{x:5,y:5}], dir = {x:1,y:0}; food = spawn(); score = 0; updateSnakeStats();
      clearInterval(snakeTimer);
      snakeTimer = setInterval(()=>{
@@ -288,6 +303,7 @@
        });
      });
    }
+
 
 
 
