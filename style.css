@@ -217,8 +217,8 @@
      .cert-card { padding: 0.7rem; }
      .project-card { padding: 0.7rem; }
      .contact-form { gap: 1rem; }
-      .social-links a { width: 45px; height: 45px; font-size: 1.1rem; }
-     .social-links { gap: 1rem; }
+       .social-links a { width: 40px; height: 40px; font-size: 1rem; }
+     .social-links { gap: 0.8rem; flex-wrap: nowrap; }
      section.page-section { padding: 4rem 1rem 3rem; }
      .modal-content { width: 95%; padding: 1.5rem; }
      .games-grid { grid-template-columns: 1fr; }
@@ -698,6 +698,7 @@
    .scroll-to-top.show {
      display: block;
    }
+
 
 
 
