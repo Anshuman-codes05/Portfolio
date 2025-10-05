@@ -249,7 +249,7 @@
    // Test function to check if modal works
    function testImageModal() {
      console.log('Testing image modal...');
-     openImageModal('https://github.com/Anshuman-codes05/Portfolio/blob/main/Screenshot%202025-10-05%20130410.png?raw=true');
+     openImageModal('assets/projects/mood-tracker-screenshot.png');
    }
 
    // Close image modal when clicking outside of it
@@ -264,3 +264,4 @@
      }
 
    }
+
