@@ -249,7 +249,7 @@
    // Test function to check if modal works
    function testImageModal() {
      console.log('Testing image modal...');
-     openImageModal('https://raw.githubusercontent.com/Anshuman-codes05/Portfolio/main/Screenshot%202025-10-05%20130410.png');
+     openImageModal('https://raw.githubusercontent.com/Anshuman-codes05/Portfolio/4f66db9e48b3844ee3c1a75d035173161bdba87f/Screenshot%202025-10-05%20130410.png');
    }
 
    // Close image modal when clicking outside of it
@@ -264,6 +264,7 @@
      }
 
    }
+
 
 
 
