@@ -184,17 +184,15 @@
        else if(e.key==='ArrowLeft'){ if(dir.x!==1) dir={x:-1,y:0}; e.preventDefault(); }
        else if(e.key==='ArrowRight'){ if(dir.x!==-1) dir={x:1,y:0}; e.preventDefault(); }
      }
+       window.changeDirection = (direction) => {
+       if(direction==='up' && dir.y!==1) dir={x:0,y:-1};
+       else if(direction==='down' && dir.y!==-1) dir={x:0,y:1};
+       else if(direction==='left' && dir.x!==1) dir={x:-1,y:0};
+       else if(direction==='right' && dir.x!==-1) dir={x:1,y:0};
+     }
      function spawn(){ return { x: Math.floor(Math.random()*cols), y: Math.floor(Math.random()*rows) }; }
      function updateSnakeStats(){ const el = document.getElementById('snakeStats'); if(el) el.textContent = `Score: ${score}`; }
    }
- <div class="snake-controls">
-              <button class="snake-btn" onclick="changeDirection('up')">↑</button>
-              <div>
-                <button class="snake-btn" onclick="changeDirection('left')">←</button>
-                <button class="snake-btn" onclick="changeDirection('right')">→</button>
-              </div>
-              <button class="snake-btn" onclick="changeDirection('down')">↓</button>
-            </div>
 
    // ---- Typing Speed ----
    const techWords = ['python','react','node','tailwind','linux','mysql','git','docker','numpy','api','class','function','promise','hooks','context'];
@@ -290,6 +288,7 @@
        });
      });
    }
+
 
 
 
