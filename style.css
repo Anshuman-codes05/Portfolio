@@ -606,3 +606,21 @@
 
    @media(max-width: 560px){ .projects-grid { grid-template-columns: 1fr; } }
 
+   /* Footer Watermark */
+   .footer-watermark {
+     text-align: center;
+     padding: 2rem 1rem;
+     color: #aeb6ff;
+     font-size: 0.85rem;
+     opacity: 0.7;
+     position: relative;
+     z-index: 2;
+   }
+   .footer-watermark p {
+     margin: 0;
+     background: linear-gradient(90deg, #6efff0, #ffd86e, #ff6ec7);
+     background-clip: text;
+     -webkit-background-clip: text;
+     -webkit-text-fill-color: transparent;
+   }
+
