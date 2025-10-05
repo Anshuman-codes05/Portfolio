@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anshuman Bharati — Portfolio</title>
+  <style>
+    /* ------------------------------
+       RESET + BASE STYLES
+    ------------------------------ */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: #0f172a;
+      color: #e2e8f0;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      text-align: center;
+      padding: 3rem 1rem;
+      background: linear-gradient(135deg, #1e293b, #334155);
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      color: #38bdf8;
+    }
+
+    header p {
+      color: #cbd5e1;
+      font-size: 1.1rem;
+    }
+
+    section {
+      max-width: 1100px;
+      margin: 3rem auto;
+      padding: 0 1rem;
+    }
+
+    h2 {
+      color: #38bdf8;
+      margin-bottom: 1rem;
+      border-left: 4px solid #38bdf8;
+      padding-left: 10px;
+    }
+
+    /* ------------------------------
+       ABOUT SECTION
+    ------------------------------ */
+    .about {
+      background: #1e293b;
+      border-radius: 12px;
+      padding: 2rem;
+    }
+
+    /* ------------------------------
+       PROJECTS SECTION
+    ------------------------------ */
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project {
+      background: #1e293b;
+      padding: 1rem;
+      border-radius: 12px;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .project:hover {
+      transform: translateY(-5px);
+    }
+
+    .project img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 0.8rem;
+    }
+
+    .project h3 {
+      color: #38bdf8;
+      font-size: 1.1rem;
+    }
+
+    /* ------------------------------
+       CERTIFICATES SECTION
+    ------------------------------ */
+    .certificates {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .certificate img {
+      width: 100%;
+      border-radius: 10px;
+      border: 2px solid #334155;
+      transition: transform 0.3s ease;
+    }
+
+    .certificate img:hover {
+      transform: scale(1.05);
+    }
+
+    /* ------------------------------
+       MODAL POPUP
+    ------------------------------ */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 10px;
+      box-shadow: 0 0 20px #000;
+    }
+
+    .close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      color: #fff;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+
+    /* ------------------------------
+       FOOTER
+    ------------------------------ */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: #1e293b;
+      color: #94a3b8;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Anshuman Bharati</h1>
+    <p>Full-Stack Web Developer | Firebase | React | OpenAI</p>
+  </header>
+
+  <section class="about">
+    <h2>About Me</h2>
+    <p>
+      I'm a passionate developer who loves building interactive, intelligent, and user-focused web apps.
+      I blend creativity with logic to turn ideas into working digital experiences. 🚀
+    </p>
+  </section>
+
+  <section>
+    <h2>Projects</h2>
+    <div class="projects">
+      <div class="project">
+        <img src="assets/project1.jpg" alt="Project 1" onclick="openModal(this)">
+        <h3>AI Chatbot</h3>
+        <p>A smart chatbot powered by OpenAI and Firebase for real-time interactions.</p>
+      </div>
+      <div class="project">
+        <img src="assets/project2.jpg" alt="Project 2" onclick="openModal(this)">
+        <h3>Mood Tracker App</h3>
+        <p>Tracks user emotions and recommends mental health exercises using AI.</p>
+      </div>
+      <div class="project">
+        <img src="assets/project3.jpg" alt="Project 3" onclick="openModal(this)">
+        <h3>Booking System</h3>
+        <p>Online platform for managing appointments and sessions with Firebase Auth.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Certificates</h2>
+    <div class="certificates">
+      <div class="certificate">
+        <img src="assets/cert1.jpg" alt="Certificate 1">
+      </div>
+      <div class="certificate">
+        <img src="assets/cert2.jpg" alt="Certificate 2">
+      </div>
+      <div class="certificate">
+        <img src="assets/cert3.jpg" alt="Certificate 3">
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Anshuman Bharati | Built with ❤️ using React & Firebase</p>
+  </footer>
+
+  <!-- MODAL -->
+  <div id="imageModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img id="modalImg" src="">
+  </div>
+
+  <script>
+    function openModal(imgElement) {
+      const modal = document.getElementById("imageModal");
+      const modalImg = document.getElementById("modalImg");
+      modal.style.display = "flex";
+      modalImg.src = imgElement.src;
+    }
+
+    function closeModal() {
+      document.getElementById("imageModal").style.display = "none";
+    }
+  </script>
+</body>
+</html>

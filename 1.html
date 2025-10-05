@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anshuman Bharati — Welcome</title>
+<style>
+  /* —— Base Styles —— */
+  * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: #0f0f19;
+    color: #fff;
+    overflow-x: hidden;
+    min-height: 100vh;
+    position: relative;
+  }
+
+  /* —— Particle canvas —— */
+  canvas#sparkles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  /* —— Top Navigation —— */
+  header.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    backdrop-filter: blur(10px);
+    background: rgba(15, 15, 25, 0.4);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    transform: translateY(-100%);
+    animation: slideDown 0.8s ease forwards 0.6s;
+  }
+  .nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0.8rem 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .brand {
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    background: linear-gradient(90deg, #ff6ec7, #6efff0, #ffd86e);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  nav ul { list-style: none; display: flex; gap: 1rem; }
+  nav a {
+    text-decoration: none;
+    color: #cfd3ff;
+    font-weight: 600;
+    padding: 0.5rem 0.9rem;
+    border-radius: 999px;
+    transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
+  }
+  nav a:hover { background: rgba(255,255,255,0.08); color: #fff; transform: translateY(-1px); }
+  nav a.active { background: linear-gradient(90deg, #ff6ec7, #6efff0, #ffd86e); color: #0f0f19; }
+
+  @keyframes slideDown {
+    from { transform: translateY(-100%); }
+    to { transform: translateY(0); }
+  }
+
+  /* —— Hero Section —— */
+  #hero { text-align: center; position: relative; z-index: 2; padding-top: 6rem; min-height: 100vh; display: grid; place-items: center; }
+
+  /* Subtle floating background circles */
+  .circle {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.5;
+    z-index: 1;
+    animation-timing-function: ease-in-out;
+  }
+  .circle:nth-child(2) { width: 300px; height: 300px; background: #ff6ec7; top: 10%; left: 15%; animation: float1 60s infinite; }
+  .circle:nth-child(3) { width: 250px; height: 250px; background: #6efff0; top: 60%; left: 70%; animation: float2 70s infinite; }
+  .circle:nth-child(4) { width: 350px; height: 350px; background: #ffd86e; top: 75%; left: 30%; animation: float3 80s infinite; }
+
+  @keyframes float1 {
+    0% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+    50% { transform: translateY(-25px) translateX(25px) rotate(180deg); }
+    100% { transform: translateY(0px) translateX(0px) rotate(360deg); }
+  }
+  @keyframes float2 {
+    0% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) translateX(-15px) rotate(180deg); }
+    100% { transform: translateY(0px) translateX(0px) rotate(360deg); }
+  }
+  @keyframes float3 {
+    0% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+    50% { transform: translateY(-30px) translateX(15px) rotate(180deg); }
+    100% { transform: translateY(0px) translateX(0px) rotate(360deg); }
+  }
+
+  /* Welcome Quote */
+  h1 {
+    font-size: 4rem;
+    font-weight: 900;
+    line-height: 1.2;
+    background: linear-gradient(90deg, #ff6ec7, #6efff0, #ffd86e, #ff6ec7);
+    background-size: 200% 200%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: fadeUp 2s ease-out forwards, gradientShift 4s ease-in-out infinite;
+    opacity: 0;
+    transition: transform 0.3s ease, filter 0.3s ease, animation-duration 0.3s ease;
+    cursor: pointer;
+  }
+  h1:hover {
+    transform: scale(1.02);
+    filter: brightness(1.1) drop-shadow(0 0 20px rgba(255, 110, 199, 0.3));
+    animation-duration: 1s;
+  }
+  p {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    background: linear-gradient(90deg, #6efff0, #ffd86e, #ff6ec7);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 2s ease-out forwards 1s;
+  }
+
+  /* Button */
+  .btn {
+    display: inline-block;
+    margin-top: 4rem;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-radius: 50px;
+    border: 2px solid #ff6ec7;
+    background: transparent;
+    color: #ff6ec7;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 2s ease-out forwards 2s;
+  }
+  .btn:hover {
+    background: linear-gradient(90deg, #ff6ec7, #6efff0, #ffd86e);
+    color: #fff;
+    transform: scale(1.1);
+    border-color: transparent;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  @media(max-width: 768px) {
+    h1 { font-size: 2.4rem; }
+    p { font-size: 1rem; }
+    .btn { font-size: 1rem; padding: 0.8rem 1.6rem; margin-top: 2.2rem; }
+    .nav-container { padding: 0.7rem 1rem; }
+    nav ul { gap: 0.4rem; flex-wrap: wrap; }
+  }
+
+  /* —— Generic Section Layout —— */
+  section.page-section { position: relative; z-index: 2; padding: 6rem 1.2rem 4rem; min-height: 100vh; display: grid; place-items: center; text-align: center; }
+  .section-inner { max-width: 1000px; margin: 0 auto; }
+  .section-title { font-size: 2rem; font-weight: 800; margin-bottom: 1rem; background: linear-gradient(90deg, #6efff0, #ffd86e, #ff6ec7); background-size: 200% 200%; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: gradientShift 3s ease-in-out infinite; transition: transform 0.3s ease, filter 0.3s ease, animation-duration 0.3s ease; cursor: pointer; }
+  .section-title:hover { transform: scale(1.05); filter: brightness(1.2) drop-shadow(0 0 15px rgba(110, 255, 240, 0.4)); animation-duration: 0.5s; }
+  .section-text { color: #cfd3ff; opacity: 0.9; }
+  
+  /* About layout */
+  .about-wrap { display: grid; grid-template-columns: 260px 1fr; gap: 2rem; align-items: center; text-align: left; }
+  .about-photo {
+    position: relative;
+    width: 240px; height: 240px; margin: 0 auto; border-radius: 50%;
+    background: transparent;
+    padding: 0;
+    border: 1px solid rgba(255,255,255,0.14);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.28);
+  }
+  .about-photo img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: block; filter: saturate(1.05) contrast(1.02); }
+  .about-content { max-width: 700px; margin: 0 auto; }
+  .about-content p { font-size: 1.05rem; line-height: 1.9; color: #dbe0ff; }
+  .about-content p + p { margin-top: 1rem; }
+
+  @media(max-width: 900px){
+    .about-wrap { grid-template-columns: 1fr; text-align: center; }
+    .about-content { text-align: left; }
+  }
+
+  /* Education timeline */
+  .edu-timeline { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 1.2rem; margin-top: 1.2rem; text-align: left; }
+  .edu-item { position: relative; padding: 1.4rem 1.6rem; border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; background: rgba(15,17,25,0.4); backdrop-filter: blur(8px); min-height: 170px; display: flex; flex-direction: column; justify-content: center; }
+  .edu-item h3 { font-size: 1.25rem; margin: 0 0 0.35rem; color: #fff; }
+  .edu-item .years { font-size: 1rem; color: #aeb6ff; }
+  .edu-item .place { font-size: 1.02rem; color: #dbe0ff; margin-top: 0.4rem; }
+  .edu-head { display: flex; gap: 1rem; align-items: center; }
+  img.edu-logo { width: 72px; height: 72px; object-fit: contain; border-radius: 10px; background: rgba(255,255,255,0.06); padding: 8px; border: 1px solid rgba(255,255,255,0.08); }
+  @media(max-width: 1000px){ .edu-timeline { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+  @media(max-width: 600px){ .edu-timeline { grid-template-columns: 1fr; } }
+
+  /* Skills */
+  .skills-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.2rem; margin-top: 1rem; }
+  .skill-card { position: relative; padding: 1.4rem; border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; background: rgba(15,17,25,0.4); display: grid; place-items: center; gap: 0.8rem; text-align: center; min-height: 150px; }
+  .skill-card img { width: 68px; height: 68px; object-fit: contain; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.35)); }
+  .skill-card .label { font-size: 1rem; color: #dbe0ff; }
+  @media(max-width: 1000px){ .skills-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  @media(max-width: 560px){ .skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+  /* Certificates */
+  .cert-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-top: 1rem; }
+  .cert-card { position: relative; border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; background: rgba(15,17,25,0.4); backdrop-filter: blur(8px); overflow: hidden; }
+  .cert-media { width: 100%; aspect-ratio: 16/10; background: rgba(255,255,255,0.04); display: grid; place-items: center; }
+  .cert-media img { width: 100%; height: 100%; object-fit: contain; display: block; transition: transform 0.3s ease; }
+  .cert-media img:hover { transform: scale(1.05); }
+  .cert-body { padding: 0.9rem 1rem 1rem; text-align: left; }
+  .cert-title { font-weight: 700; color: #fff; font-size: 1.05rem; }
+  .cert-meta { color: #aeb6ff; font-size: 0.92rem; margin-top: 0.2rem; }
+  /* removed view button styles */
+  @media(max-width: 1000px){ .cert-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media(max-width: 560px){ .cert-grid { grid-template-columns: 1fr; } }
+
+  /* —— 3D Tilt —— */
+  .tilt { transform-style: preserve-3d; will-change: transform, box-shadow; transition: transform 200ms ease, box-shadow 200ms ease; }
+  .tilt::after {
+    content: ""; position: absolute; inset: -2px; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity 200ms ease; 
+    background: radial-gradient(600px 200px at var(--mx,50%) var(--my,50%), rgba(255,255,255,0.12), transparent 60%);
+  }
+  .tilt.is-tilting { box-shadow: 0 18px 40px rgba(0,0,0,0.35); }
+  .tilt.is-tilting::after { opacity: 1; }
+
+  /* Alternating subtle background accents */
+  section.page-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(1200px 400px at 10% 0%, rgba(255, 110, 199, 0.06), transparent 60%),
+                radial-gradient(1000px 350px at 90% 100%, rgba(110, 255, 240, 0.05), transparent 60%);
+    z-index: -1;
+    opacity: 0.9;
+    pointer-events: none;
+  }
+  section.page-section:nth-of-type(even)::before {
+    background: radial-gradient(1200px 400px at 90% 0%, rgba(255, 216, 110, 0.06), transparent 60%),
+                radial-gradient(1000px 350px at 10% 100%, rgba(110, 255, 240, 0.05), transparent 60%);
+  }
+
+  /* Section divider */
+  .section-divider {
+    position: relative;
+    height: 64px;
+    display: grid;
+    place-items: center;
+    margin: 0 0;
+    z-index: 2;
+  }
+  .section-divider::before {
+    content: "";
+    width: 70%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(255, 110, 199, 0.6), rgba(110, 255, 240, 0.6), rgba(255, 216, 110, 0.6), transparent);
+    filter: drop-shadow(0 0 6px rgba(255,255,255,0.15));
+    border-radius: 2px;
+  }
+
+  /* Reveal animations */
+  .reveal { opacity: 0; transform: translateY(24px) scale(0.98); transition: opacity 700ms ease, transform 700ms ease; }
+  .reveal.revealed { opacity: 1; transform: translateY(0) scale(1); }
+  .reveal-stagger > * { transition-delay: 90ms; }
+  .reveal-stagger > *:nth-child(2) { transition-delay: 180ms; }
+  .reveal-stagger > *:nth-child(3) { transition-delay: 270ms; }
+  .reveal-stagger > *:nth-child(4) { transition-delay: 360ms; }
+
+  /* Readability tweaks */
+  .section-text { line-height: 1.8; max-width: 800px; margin: 0 auto; }
+
+  /* Contact Form */
+  .contact-form { display: grid; gap: 1.5rem; max-width: 600px; margin: 2rem auto 0; }
+  .form-group { display: flex; flex-direction: column; opacity: 0; transform: translateY(20px); animation: fadeUp 0.8s ease forwards; }
+  .form-group:nth-child(1) { animation-delay: 0.2s; }
+  .form-group:nth-child(2) { animation-delay: 0.4s; }
+  .form-group:nth-child(3) { animation-delay: 0.6s; }
+  .form-group:nth-child(4) { animation-delay: 0.8s; }
+  .form-group label { color: #dbe0ff; font-weight: 600; margin-bottom: 0.5rem; }
+  .form-group input, .form-group textarea { padding: 0.8rem; border-radius: 10px; border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.05); color: #fff; font-family: inherit; transition: all 0.3s ease; }
+  .form-group input:focus, .form-group textarea:focus { outline: none; border-color: rgba(255,110,199,0.5); box-shadow: 0 0 10px rgba(255,110,199,0.3); }
+  .form-group textarea { resize: vertical; min-height: 120px; }
+  .contact-btn { padding: 1rem 2rem; border-radius: 50px; border: 2px solid #ff6ec7; background: transparent; color: #ff6ec7; font-weight: 600; cursor: pointer; transition: all 0.4s ease; margin-top: 1rem; opacity: 0; transform: translateY(20px); animation: fadeUp 0.8s ease forwards 1s; }
+  .contact-btn:hover { background: linear-gradient(90deg, #ff6ec7, #6efff0); color: #fff; transform: scale(1.05); }
+
+  .social-links { text-align: center; margin-top: 3rem; opacity: 0; transform: translateY(20px); animation: fadeUp 0.8s ease forwards 1.4s; }
+  .social-links h3 { color: #dbe0ff; font-size: 1.2rem; margin-bottom: 1rem; background: linear-gradient(90deg, #6efff0, #ffd86e, #ff6ec7); background-size: 200% 200%; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: gradientShift 3s ease-in-out infinite; transition: transform 0.3s ease, filter 0.3s ease, animation-duration 0.3s ease; cursor: pointer; }
+  .social-links h3:hover { transform: scale(1.05); filter: brightness(1.2) drop-shadow(0 0 15px rgba(110, 255, 240, 0.4)); animation-duration: 0.5s; }
+  .social-links { display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; }
+  .social-links a { width: 80px; height: 80px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; font-size: 2rem; color: #dbe0ff; text-decoration: none; transition: all 0.3s ease; }
+  .social-links a:hover { background: rgba(255,255,255,0.1); color: #fff; transform: scale(1.1); border-color: rgba(255,110,199,0.5); box-shadow: 0 0 20px rgba(255,110,199,0.3); }
+  .social-links a img { filter: brightness(0) invert(1); transition: filter 0.3s ease; }
+  .social-links a:hover img { filter: brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(180deg) brightness(1.2); }
+  
+  /* Anonymous Games */
+  .games-wrap { max-width: 1000px; margin: 0 auto; display: grid; gap: 1.2rem; }
+  .games-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 1.2rem; }
+  .game-card { 
+    position: relative;
+    border: 1px solid rgba(255,255,255,0.08); 
+    border-radius: 16px; 
+    background: linear-gradient(145deg, rgba(15,17,25,0.7), rgba(25,27,35,0.6)); 
+    padding: 1.1rem; 
+    display: grid; 
+    gap: 0.7rem; 
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  .game-card:hover { transform: translateY(-6px); border-color: rgba(255, 110, 199, 0.35); box-shadow: 0 18px 40px rgba(0,0,0,0.35), 0 0 24px rgba(255,110,199,0.15); }
+  .game-title { font-weight: 800; display: flex; align-items: center; gap: .5rem; }
+  .game-title .badge { font-size: .75rem; color: #0f0f19; background: linear-gradient(90deg, #ff6ec7, #ffd86e); padding: .18rem .5rem; border-radius: 999px; font-weight: 800; }
+  .game-btn { padding: 0.58rem 1rem; border-radius: 999px; border: 1px solid rgba(110,255,240,0.45); background: linear-gradient(90deg, rgba(110,255,240,0.1), rgba(255,110,199,0.1)); color: #dff; font-weight: 700; cursor: pointer; }
+  .game-btn:hover { background: linear-gradient(90deg, rgba(110,255,240,0.2), rgba(255,110,199,0.2)); box-shadow: 0 10px 24px rgba(110,255,240,.18); }
+  .game-area { border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 1rem; display: none; background: rgba(255,255,255,0.03); }
+  canvas#snake { background: radial-gradient(600px 200px at 30% 0%, rgba(255,110,199,.08), transparent 60%), #0a0a12; width: 100%; height: 340px; border-radius: 12px; }
+  .typing-wrap { display: grid; gap: 0.5rem; }
+  .typing-target { font-size: 1rem; color: #dbe0ff; min-height: 48px; }
+  .typing-input { width: 100%; padding: 0.7rem 0.9rem; border-radius: 10px; border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.05); color: #fff; }
+  .typing-stats { color: #aeb6ff; font-size: 0.92rem; }
+  .memory-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.6rem; }
+  .card { aspect-ratio: 1/1; border-radius: 12px; background: rgba(255,255,255,0.06); display: grid; place-items: center; cursor: pointer; font-weight: 800; color: #0f0f19; border: 1px solid rgba(255,255,255,0.1); transition: transform .2s ease, background .2s ease; }
+  .card:hover { transform: translateY(-3px); }
+  .card.face { background: linear-gradient(135deg, #ffffff, #e9fff8); }
+  @media(max-width: 900px){ .games-grid { grid-template-columns: 1fr; } }
+
+  /* Minimal Projects Section - Like Certificates */
+  .projects-grid { 
+    display: grid; 
+    grid-template-columns: repeat(3, minmax(0, 1fr)); 
+    gap: 1rem; 
+    margin-top: 1rem; 
+  }
+  
+  .project-card { 
+    position: relative; 
+    border: 1px solid rgba(255,255,255,0.08); 
+    border-radius: 14px; 
+    background: rgba(15,17,25,0.4); 
+    backdrop-filter: blur(8px); 
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  
+  .project-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(255, 110, 199, 0.3);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  }
+  
+  .project-screenshot { 
+    width: 100%; 
+    aspect-ratio: 16/10; 
+    background: rgba(255,255,255,0.04); 
+    display: grid; 
+    place-items: center;
+    overflow: hidden;
+  }
+  
+  .project-screenshot img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: contain; 
+    display: block;
+    transition: all 0.3s ease;
+  }
+  
+  .project-card:hover .project-screenshot img {
+    transform: scale(1.02);
+  }
+  
+  .project-content { 
+    padding: 0.9rem 1rem 1rem; 
+    text-align: left;
+  }
+  
+  .project-title { 
+    font-weight: 700; 
+    color: #fff; 
+    font-size: 1.05rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .project-description { 
+    color: #aeb6ff; 
+    font-size: 0.92rem; 
+    line-height: 1.5;
+    margin-bottom: 0.8rem;
+  }
+
+  .project-button {
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    background: linear-gradient(90deg, #ff6ec7, #6efff0);
+    color: #0f0f19;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+  }
+
+  .project-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 110, 199, 0.4);
+  }
+
+  /* Modal Styles */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    backdrop-filter: blur(5px);
+  }
+
+  .modal-content {
+    background: linear-gradient(145deg, rgba(15,17,25,0.95), rgba(25,27,35,0.9));
+    margin: 2% auto;
+    padding: 2rem;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+    position: relative;
+    backdrop-filter: blur(15px);
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+  }
+
+  .close:hover {
+    color: #ff6ec7;
+  }
+
+  .modal-title {
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    background: linear-gradient(90deg, #ff6ec7, #6efff0);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .modal-description {
+    color: #dbe0ff;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .modal-features {
+    color: #dbe0ff;
+    margin-bottom: 1rem;
+  }
+
+  .modal-features h4 {
+    color: #fff;
+    margin-bottom: 0.5rem;
+  }
+
+  .modal-features ul {
+    padding-left: 1.5rem;
+  }
+
+  .modal-features li {
+    margin-bottom: 0.3rem;
+  }
+
+  /* Custom scrollbar for modal */
+  .modal-content::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .modal-content::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.1);
+    border-radius: 4px;
+  }
+
+  .modal-content::-webkit-scrollbar-thumb {
+    background: linear-gradient(90deg, #ff6ec7, #6efff0);
+    border-radius: 4px;
+  }
+
+  .modal-content::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(90deg, #ff5bb5, #5effe6);
+  }
+
+  /* Image Expansion Modal */
+  .image-modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.9);
+    backdrop-filter: blur(10px);
+  }
+
+  .image-modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  }
+
+  .image-modal img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 10px;
+  }
+
+  .image-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1002;
+    background: rgba(0,0,0,0.5);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+
+  .image-close:hover {
+    background: rgba(255, 110, 199, 0.8);
+    transform: scale(1.1);
+  }
+
+  /* Make project images clickable */
+  .project-screenshot {
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .project-screenshot:hover {
+    transform: scale(1.02);
+    box-shadow: 0 5px 20px rgba(255, 110, 199, 0.3);
+  }
+
+  /* Responsive design for projects */
+  @media(max-width: 1000px){ .projects-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media(max-width: 560px){ .projects-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<!-- Top Navigation -->
+<header class="navbar">
+  <div class="nav-container">
+    <div class="brand">Anshuman</div>
+    <nav>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#certificates">Certificates</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#anonymous">Anonymous</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div id="nav-ghost" style="height:0"></div>
+</header>
+
+<!-- Sparkles canvas -->
+<canvas id="sparkles"></canvas>
+
+<!-- Floating circles -->
+<div class="circle"></div>
+<div class="circle"></div>
+<div class="circle"></div>
+
+<!-- Hero Content -->
+<section id="hero">
+  <h1>Hey, I'm Anshuman Bharati</h1>
+  <p>Engineering student | Welcome to my portfolio website</p>
+  <a href="#projects" class="btn tilt">See My Work</a>
+</section>
+
+<!-- About -->
+<section id="about" class="page-section reveal">
+  <div class="section-inner reveal-stagger">
+    <h2 class="section-title">About</h2>
+    <div class="about-wrap">
+      <div class="about-photo tilt" style="--tiltMax:8; border-radius: 50%;">
+        <img src="profile.jpg" alt="Profile photo of Anshuman" loading="lazy">
+      </div>
+      <div class="about-content tilt" style="--tiltMax:4; border-radius: 12px;">
+        <p>I am an Information Technology student with a big passion for web development. I love mixing creativity and logic to build websites that don't just work well but also feel smooth and enjoyable to use.</p>
+        <p>Along the way, I've built a solid foundation in Data Structures and Algorithms, which helps me think through problems better. Right now, I'm pursuing my B.Tech at Techno Bengal Institute of Technology, Kolkata (Class of 2027), and I'm always curious to learn new things, explore modern web technologies, and turn ideas into something real through code.</p>
+      </div>
+    </div>
+  </div>
+  <div class="circle"></div>
+</section>
+<div class="section-divider reveal"></div>
+ 
+<!-- Education -->
+<section id="education" class="page-section reveal">
+  <div class="section-inner reveal-stagger">
+    <h2 class="section-title">Education</h2>
+    <div class="edu-timeline tilt" style="--tiltMax:3; border-radius: 12px;">
+      <div class="edu-item">
+        <div class="edu-head">
+          <img class="edu-logo" src="sarada-educare.png" alt="Sarada Educare logo" loading="lazy">
+          <div>
+            <h3>Sarada Educare</h3>
+            <div class="years">2013 – 2021</div>
+          </div>
+        </div>
+        <div class="place">Primary and Middle School</div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-head">
+          <img class="edu-logo" src="phsps.jpg" alt="Pathfinder Higher Secondary Public School logo" loading="lazy">
+          <div>
+            <h3>Pathfinder Higher Secondary Public School</h3>
+            <div class="years">2021 – 2023</div>
+          </div>
+        </div>
+        <div class="place">Higher Secondary Education</div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-head">
+          <img class="edu-logo" src="BIT-logo.png" alt="Bengal Institute of Technology logo" loading="lazy">
+          <div>
+            <h3>Techno Bengal Institute of Technology, Kolkata</h3>
+            <div class="years">2023 – 2027</div>
+          </div>
+        </div>
+        <div class="place">B.Tech (Information Technology)</div>
+      </div>
+    </div>
+  </div>
+  <div class="circle"></div>
+</section>
+<div class="section-divider reveal"></div>
+ 
+<!-- Skills -->
+<section id="skills" class="page-section reveal">
+  <div class="section-inner reveal-stagger">
+    <h2 class="section-title">Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-card tilt" style="--tiltMax:4;">
+        <img src="https://image.pngaaa.com/137/619137-middle.png" alt="Python logo" loading="lazy">
+        <div class="label">Python</div>
+      </div>
+      <div class="skill-card tilt" style="--tiltMax:4;">
+        <img src="https://logosandtypes.com/wp-content/uploads/2024/02/NumPy.png" alt="NumPy logo" loading="lazy">
+        <div class="label">NumPy</div>
+      </div>
+      <div class="skill-card tilt" style="--tiltMax:4;">
+        <img src="https://tse1.mm.bing.net/th/id/OIP.Vn8Aa5ypdPND2xyceZIAdAHaHS?cb=12&rs=1&pid=ImgDetMain&o=7&rm=3" alt="GitHub logo" loading="lazy">
+        <div class="label">GitHub</div>
+      </div>
+      <div class="skill-card tilt" style="--tiltMax:4;">
+        <img src="https://compucademy.net/wp-content/uploads/2020/11/pycharm-python-programming.jpg" alt="PyCharm logo" loading="lazy">
+        <div class="label">PyCharm</div>
+      </div>
+      <div class="skill-card tilt" style="--tiltMax:4;">
+        <img src="https://w7.pngwing.com/pngs/512/824/png-transparent-visual-studio-code-hd-logo-thumbnail.png" loading="lazy">
+        <div class="label">VS Code</div>
+      </div>
+      <div class="skill-card tilt" style="--tiltMax:4;">
+        <img src="https://www.vhv.rs/dpng/f/543-5438423_mysql-png.png" alt="MySQL logo" loading="lazy">
+        <div class="label">MySQL</div>
+      </div>
+      <div class="skill-card tilt" style="--tiltMax:4;">
+        <img src="https://tse1.mm.bing.net/th/id/OIP.uOlrFi1pBWUofOrOmba8DgHaHk?cb=12&rs=1&pid=ImgDetMain&o=7&rm=3" alt="HTML5 logo" loading="lazy">
+        <div class="label">HTML5</div>
+      </div>
+      <div class="skill-card tilt" style="--tiltMax:4;">
+        <img src="https://tse4.mm.bing.net/th/id/OIP.yUIb5S_kj98Eg5tT-Onx1AHaHa?cb=12&rs=1&pid=ImgDetMain&o=7&rm=3" alt="CSS3 logo" loading="lazy">
+        <div class="label">CSS3</div>
+      </div>
+      <div class="skill-card tilt" style="--tiltMax:4;">
+        <img src="https://www.pngall.com/wp-content/uploads/15/React-Logo-PNG-Images.png" alt="React logo" loading="lazy">
+        <div class="label">React</div>
+      </div>
+      <div class="skill-card tilt" style="--tiltMax:4;">
+        <img src="https://tse3.mm.bing.net/th/id/OIP.YfjXYz4QLyY59pD4uKb4bAHaHa?cb=12&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Node.js logo" loading="lazy">
+        <div class="label">Node.js</div>
+      </div>
+      <div class="skill-card tilt" style="--tiltMax:4;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Tailwind_CSS_Logo.svg/1200px-Tailwind_CSS_Logo.svg.png" alt="Tailwind CSS logo" loading="lazy">
+        <div class="label">Tailwind</div>
+      </div>
+      
+      <div class="skill-card tilt" style="--tiltMax:4;">
+        <img src="https://images.seeklogo.com/logo-png/48/1/linux-logo-png_seeklogo-482333.png" alt="Linux logo" loading="lazy">
+        <div class="label">Linux</div>
+      </div>
+      
+    </div>
+  </div>
+  <div class="circle"></div>
+</section>
+<div class="section-divider reveal"></div>
+ 
+<!-- Certificates -->
+<section id="certificates" class="page-section reveal">
+  <div class="section-inner reveal-stagger">
+    <h2 class="section-title">Certificates</h2>
+    <div class="cert-grid">
+      <div class="cert-card tilt" style="--tiltMax:3;">
+        <div class="cert-media">
+          <img src="certificates/sih-2023.png" alt="Internal Hackathon for SIH 2023 certificate" loading="lazy">
+        </div>
+        <div class="cert-body">
+          <div class="cert-title">Internal Hackathon for SIH 2023</div>
+          <div class="cert-meta">Institution's Innovation Council • 27 Sep 2023</div>
+        </div>
+      </div>
+      <div class="cert-card tilt" style="--tiltMax:3;">
+        <div class="cert-media">
+          <img src="certificates/bits2bytes-cosmic-contour-2025.jpg" alt="BITS2BYTES 2K25 Certificate of Excellence" loading="lazy">
+        </div>
+        <div class="cert-body">
+          <div class="cert-title">BITS2BYTES 2K25 Certificate of Excellence</div>
+          <div class="cert-meta">1st Position in COSMIC CONTOUR • 15-17 Sep 2025 • Techno Bengal Institute of Technology</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="circle"></div>
+</section>
+<div class="section-divider reveal"></div>
+ 
+<!-- Projects -->
+<section id="projects" class="page-section reveal">
+  <div class="section-inner reveal-stagger">
+    <h2 class="section-title">Projects</h2>
+    <div class="projects-grid">
+      <div class="project-card tilt" style="--tiltMax:3;">
+        <div class="project-screenshot" onclick="openImageModal('projects/mood-tracker-screenshot.png')" style="cursor: pointer;">
+          <img src="projects/mood-tracker-screenshot.png" alt="Student Mental Health Support Platform Screenshot" loading="lazy" style="pointer-events: none;">
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">Student Mental Health Support Platform</h3>
+          <p class="project-description">
+            A comprehensive mood tracking application designed specifically for students to monitor their mental health, 
+            track emotional patterns, and maintain well-being throughout their academic journey.
+          </p>
+          <button class="project-button" onclick="openModal()">About Project</button>
+          <button class="project-button" onclick="testImageModal()" style="margin-left: 10px; background: linear-gradient(90deg, #6efff0, #ffd86e);">Test Image</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="circle"></div>
+</section>
+<div class="section-divider reveal"></div>
+ 
+<!-- Anonymous -->
+<section id="anonymous" class="page-section reveal">
+  <div class="section-inner reveal-stagger">
+    <h2 class="section-title">Anonymous</h2>
+    <div class="games-wrap tilt" style="--tiltMax:2; border-radius: 16px;">
+      <div class="games-grid">
+        <div class="game-card">
+          <div class="game-title">🐍 Snake Game <span class="badge">Retro</span></div>
+          <button class="game-btn" onclick="toggleGame('snakeArea')">Play</button>
+          <div id="snakeArea" class="game-area">
+            <canvas id="snake" width="400" height="320"></canvas>
+            <div class="typing-stats" id="snakeStats">Score: 0</div>
+          </div>
+        </div>
+        <div class="game-card">
+          <div class="game-title">⌨️ Typing Speed <span class="badge">Skills</span></div>
+          <button class="game-btn" onclick="toggleGame('typingArea')">Play</button>
+          <div id="typingArea" class="game-area">
+            <div class="typing-wrap">
+              <div class="typing-target" id="typingTarget"></div>
+              <input id="typingInput" class="typing-input" placeholder="Start typing..." />
+              <div class="typing-stats" id="typingStats">WPM: 0 • Accuracy: 100%</div>
+            </div>
+          </div>
+        </div>
+        <div class="game-card">
+          <div class="game-title">🧠 Memory Flip <span class="badge">Logos</span></div>
+          <button class="game-btn" onclick="toggleGame('memoryArea')">Play</button>
+          <div id="memoryArea" class="game-area">
+            <div class="memory-grid" id="memoryGrid"></div>
+            <div class="typing-stats" id="memoryStats">Pairs: 0/0 • Moves: 0</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="circle"></div>
+</section>
+<div class="section-divider reveal"></div>
+ 
+<!-- Contact -->
+<section id="contact" class="page-section reveal">
+  <div class="section-inner reveal-stagger">
+    <h2 class="section-title">Contact</h2>
+    <p class="section-text">Get in touch! Fill out the form below to send me a message.</p>
+    <form class="contact-form">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="Your Name" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+      </div>
+      <div class="form-group">
+        <label for="subject">Subject</label>
+        <input type="text" id="subject" name="subject" placeholder="Subject" required>
+      </div>
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" placeholder="Your message here..." required></textarea>
+      </div>
+      <button type="submit" class="contact-btn">Send Message</button>
+    </form>
+    <div class="social-links">
+      <h3>Connect with me</h3>
+      <a href="https://x.com/AnshumanBharat9" target="_blank" title="X (Twitter)"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/x.svg" alt="X" width="40" height="40"></a>
+      <a href="https://www.geeksforgeeks.org/user/bharatianlp2e/" target="_blank" title="Geeks for Geeks"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/geeksforgeeks.svg" alt="Geeks for Geeks" width="40" height="40"></a>
+      <a href="https://www.linkedin.com/in/anshuman-bharati-465815290/" target="_blank" title="LinkedIn"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/linkedin.svg" alt="LinkedIn" width="40" height="40"></a>
+      <a href="https://github.com/Anshuman-codes05" target="_blank" title="GitHub"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/github.svg" alt="GitHub" width="40" height="40"></a>
+    </div>
+  </div>
+  <div class="circle"></div>
+</section>
+
+<!-- Project Details Modal -->
+<div id="projectModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <h2 class="modal-title">Student Mental Health Support Platform</h2>
+    <div class="modal-description">
+      <p>A comprehensive mood tracking application designed specifically for students to monitor their mental health and emotional well-being. This platform helps students track their daily moods, identify patterns, and maintain better mental health throughout their academic journey.</p>
+    </div>
+    <div class="modal-features">
+      <h4>Key Features:</h4>
+      <ul>
+        <li>Daily mood logging with emoji-based interface</li>
+        <li>Mood history tracking and visualization</li>
+        <li>Firebase integration for data persistence</li>
+        <li>Clean, student-friendly user interface</li>
+        <li>Mental health pattern analysis</li>
+        <li>Privacy-focused design for sensitive data</li>
+      </ul>
+    </div>
+    <div class="modal-features">
+      <h4>Technologies Used:</h4>
+      <ul>
+        <li>HTML5, CSS3, JavaScript</li>
+        <li>Firebase (Backend & Database)</li>
+        <li>Responsive Web Design</li>
+        <li>Modern UI/UX Principles</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Image Expansion Modal -->
+<div id="imageModal" class="image-modal">
+  <div class="image-modal-content">
+    <img id="expandedImage" src="" alt="Expanded Project Screenshot">
+  </div>
+  <span class="image-close" onclick="closeImageModal()">&times;</span>
+</div>
+
+<script>
+  // Sparkles animation
+  const canvas = document.getElementById('sparkles');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const sparkles = [];
+  for(let i=0;i<80;i++){
+    sparkles.push({
+      x: Math.random()*canvas.width,
+      y: Math.random()*canvas.height,
+      r: Math.random()*1.5+0.5,
+      speedX: (Math.random()-0.5)*0.2,
+      speedY: (Math.random()-0.5)*0.2,
+      alpha: Math.random()*0.5+0.3
+    });
+  }
+
+  function animate(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    sparkles.forEach(s=>{
+      s.x += s.speedX;
+      s.y += s.speedY;
+      if(s.x<0)s.x=canvas.width;
+      if(s.x>canvas.width)s.x=0;
+      if(s.y<0)s.y=canvas.height;
+      if(s.y>canvas.height)s.y=0;
+      ctx.fillStyle = `rgba(255,255,255,${s.alpha})`;
+      ctx.beginPath();
+      ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+      ctx.fill();
+    });
+    requestAnimationFrame(animate);
+  }
+  animate();
+
+  // Smooth scroll offset to account for fixed nav + active link state
+  const header = document.querySelector('header.navbar');
+  const navLinks = Array.from(document.querySelectorAll('header.navbar nav a'));
+  const revealEls = Array.from(document.querySelectorAll('.reveal'));
+
+  function getHeaderHeight(){
+    return header ? header.getBoundingClientRect().height : 0;
+  }
+
+  // Scroll with offset when clicking nav links
+  navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      const href = link.getAttribute('href');
+      if(href && href.startsWith('#')){
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if(target){
+          const top = target.getBoundingClientRect().top + window.scrollY - (getHeaderHeight() - 1);
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      }
+    });
+  });
+
+  // Highlight active link while scrolling
+  const sections = Array.from(document.querySelectorAll('section[id]'));
+  function updateActiveLink(){
+    const offset = getHeaderHeight() + 20;
+    const scrollPos = window.scrollY + offset;
+    let currentId = 'hero';
+    for(const sec of sections){
+      const top = sec.offsetTop;
+      if(scrollPos >= top){ currentId = sec.id; }
+    }
+    navLinks.forEach(a => {
+      const isActive = a.getAttribute('href') === `#${currentId}`;
+      a.classList.toggle('active', isActive);
+    });
+  }
+  updateActiveLink();
+  window.addEventListener('scroll', updateActiveLink, { passive: true });
+
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('revealed');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
+
+  revealEls.forEach(el => io.observe(el));
+
+  // Tilt effect
+  const tiltEls = Array.from(document.querySelectorAll('.tilt'));
+  const MAX_TILT_DEFAULT = 10;
+  tiltEls.forEach(el => {
+    const maxTilt = parseFloat(getComputedStyle(el).getPropertyValue('--tiltMax')) || MAX_TILT_DEFAULT;
+    const handleMove = (e) => {
+      const rect = el.getBoundingClientRect();
+      const x = e.clientX - rect.left; const y = e.clientY - rect.top;
+      const px = (x / rect.width - 0.5) * 2;
+      const py = (y / rect.height - 0.5) * 2;
+      const rx = (-py * maxTilt).toFixed(2);
+      const ry = (px * maxTilt).toFixed(2);
+      el.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
+      el.style.setProperty('--mx', `${x}px`);
+      el.style.setProperty('--my', `${y}px`);
+      el.classList.add('is-tilting');
+    };
+    const reset = () => {
+      el.style.transform = 'rotateX(0deg) rotateY(0deg)';
+      el.classList.remove('is-tilting');
+    };
+    el.addEventListener('mousemove', handleMove);
+    el.addEventListener('mouseleave', reset);
+    el.addEventListener('blur', reset);
+  });
+
+  window.addEventListener('resize',()=>{
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    updateActiveLink();
+  });
+
+  // Modal functionality
+  function openModal() {
+    document.getElementById('projectModal').style.display = 'block';
+  }
+
+  function closeModal() {
+    document.getElementById('projectModal').style.display = 'none';
+  }
+
+  // Close modal when clicking outside of it
+  window.onclick = function(event) {
+    const modal = document.getElementById('projectModal');
+    if (event.target == modal) {
+      closeModal();
+    }
+  }
+
+  // Close modal with Escape key
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+      closeModal();
+      closeImageModal();
+    }
+  });
+
+  // =========== Anonymous Games Logic ==========
+  function toggleGame(id){
+    const el = document.getElementById(id);
+    if(!el) return;
+    const nowVisible = el.style.display !== 'block';
+    document.querySelectorAll('#anonymous .game-area').forEach(x=> x.style.display='none');
+    el.style.display = nowVisible ? 'block' : 'none';
+    if(nowVisible){
+      if(id==='snakeArea') startSnake();
+      if(id==='typingArea') initTyping();
+      if(id==='memoryArea') initMemory();
+    }
+  }
+
+  // ---- Snake ----
+  let snakeTimer, snake, dir, food, score;
+  function startSnake(){
+    const c = document.getElementById('snake'); if(!c) return; const ctx = c.getContext('2d');
+    const w = c.width, h = c.height, size = 16, cols = Math.floor(w/size), rows = Math.floor(h/size);
+    snake = [{x:5,y:5}], dir = {x:1,y:0}; food = spawn(); score = 0; updateSnakeStats();
+    clearInterval(snakeTimer);
+    snakeTimer = setInterval(()=>{
+      const head = {x: (snake[0].x+dir.x+cols)%cols, y:(snake[0].y+dir.y+rows)%rows};
+      if(snake.some((s,i)=> i&& s.x===head.x && s.y===head.y)){
+        snake = [{x:5,y:5}]; dir={x:1,y:0}; score = 0; food = spawn();
+      } else {
+        snake.unshift(head);
+        if(head.x===food.x && head.y===food.y){ score++; food = spawn(); updateSnakeStats(); } else { snake.pop(); }
+      }
+      ctx.fillStyle = '#0a0a12'; ctx.fillRect(0,0,w,h);
+      ctx.fillStyle = '#ffd86e'; ctx.fillRect(food.x*size, food.y*size, size, size);
+      ctx.fillStyle = '#6efff0'; snake.forEach(s=> ctx.fillRect(s.x*size, s.y*size, size-1, size-1));
+    }, 100);
+    window.onkeydown = (e)=>{
+      if(e.key==='ArrowUp'){ if(dir.y!==1) dir={x:0,y:-1}; e.preventDefault(); }
+      else if(e.key==='ArrowDown'){ if(dir.y!==-1) dir={x:0,y:1}; e.preventDefault(); }
+      else if(e.key==='ArrowLeft'){ if(dir.x!==1) dir={x:-1,y:0}; e.preventDefault(); }
+      else if(e.key==='ArrowRight'){ if(dir.x!==-1) dir={x:1,y:0}; e.preventDefault(); }
+    }
+    function spawn(){ return { x: Math.floor(Math.random()*cols), y: Math.floor(Math.random()*rows) }; }
+    function updateSnakeStats(){ const el = document.getElementById('snakeStats'); if(el) el.textContent = `Score: ${score}`; }
+  }
+
+  // ---- Typing Speed ----
+  const techWords = ['python','react','node','tailwind','linux','mysql','git','docker','numpy','api','class','function','promise','hooks','context'];
+  let targetText='', startTime=0, typed=0, errors=0;
+  function initTyping(){
+    const t = document.getElementById('typingTarget'); const input = document.getElementById('typingInput'); const stats = document.getElementById('typingStats');
+    if(!t||!input||!stats) return;
+    targetText = Array.from({length: 10}, ()=> techWords[Math.floor(Math.random()*techWords.length)]).join(' ');
+    t.textContent = targetText; input.value=''; startTime=0; typed=0; errors=0; input.focus();
+    input.oninput = ()=>{
+      if(!startTime) startTime = Date.now();
+      const val = input.value; typed = val.length;
+      const compareLen = Math.min(val.length, targetText.length);
+      let err=0; for(let i=0;i<compareLen;i++){ if(val[i]!==targetText[i]) err++; }
+      errors = err + Math.max(0, val.length - targetText.length);
+      const mins = (Date.now()-startTime)/60000 || 1e-6; const wpm = Math.max(0, Math.round((typed/5)/mins));
+      const acc = Math.max(0, Math.round(100*((typed-errors)/(typed||1))));
+      stats.textContent = `WPM: ${wpm} • Accuracy: ${acc}%`;
+      if(val === targetText){ t.textContent = 'Great! Press Enter to restart'; }
+    }
+    input.onkeydown = (e)=>{ if(e.key==='Enter'){ initTyping(); } }
+  }
+
+  // ---- Memory Flip ----
+  const skillSet = ['Py','JS','DB','Rx','Li','Re','Nd','Tw'];
+  let first=null, second=null, locked=false, pairs=0, moves=0;
+  function initMemory(){
+    const grid = document.getElementById('memoryGrid'); const stats = document.getElementById('memoryStats');
+    if(!grid||!stats) return; grid.innerHTML=''; first=second=null; locked=false; pairs=0; moves=0;
+    const deck = [...skillSet, ...skillSet].sort(()=> Math.random()-0.5);
+    deck.forEach((label)=>{
+      const d = document.createElement('div'); d.className='card'; d.dataset.label = label; d.textContent='?';
+      d.onclick = ()=>{
+        if(locked || d.classList.contains('face')) return; d.classList.add('face'); d.textContent = label; 
+        if(!first){ first=d; }
+        else if(first && !second){
+          second=d; moves++;
+          if(first.dataset.label===second.dataset.label){ pairs++; first=null; second=null; }
+          else { locked=true; setTimeout(()=>{ first.classList.remove('face'); first.textContent='?'; second.classList.remove('face'); second.textContent='?'; first=null; second=null; locked=false; }, 600); }
+          stats.textContent = `Pairs: ${pairs}/${skillSet.length} • Moves: ${moves}`;
+        }
+      };
+      grid.appendChild(d);
+    });
+    stats.textContent = `Pairs: 0/${skillSet.length} • Moves: 0`;
+  }
+
+  // Image modal functionality
+  function openImageModal(imageSrc) {
+    console.log('Opening image modal with:', imageSrc);
+    document.getElementById('expandedImage').src = imageSrc;
+    document.getElementById('imageModal').style.display = 'block';
+  }
+
+  function closeImageModal() {
+    console.log('Closing image modal');
+    document.getElementById('imageModal').style.display = 'none';
+  }
+
+  // Test function to check if modal works
+  function testImageModal() {
+    console.log('Testing image modal...');
+    openImageModal('projects/mood-tracker-screenshot.png');
+  }
+
+  // Close image modal when clicking outside of it
+  window.onclick = function(event) {
+    const modal = document.getElementById('projectModal');
+    const imageModal = document.getElementById('imageModal');
+    if (event.target == modal) {
+      closeModal();
+    }
+    if (event.target == imageModal) {
+      closeImageModal();
+    }
+  }
+</script>
+
+</body>
+</html>
