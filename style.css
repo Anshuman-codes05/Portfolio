@@ -609,10 +609,10 @@
    /* Footer Watermark */
    .footer-watermark {
      text-align: center;
-     padding: 2rem 1rem;
+     padding: 1rem;
      color: #aeb6ff;
-     font-size: 0.85rem;
-     opacity: 0.7;
+      font-size: 0.7rem;
+     opacity: 0.4;
      position: relative;
      z-index: 2;
    }
@@ -623,4 +623,5 @@
      -webkit-background-clip: text;
      -webkit-text-fill-color: transparent;
    }
+
 
