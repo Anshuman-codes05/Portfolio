@@ -170,6 +170,24 @@
      .nav-container { padding: 0.7rem 1rem; }
      nav ul { gap: 0.4rem; flex-wrap: wrap; }
    }
+   @media(max-width: 480px) {
+     h1 { font-size: 2rem; }
+     p { font-size: 0.9rem; }
+     .btn { font-size: 0.9rem; padding: 0.7rem 1.4rem; margin-top: 2rem; }
+     .section-title { font-size: 1.5rem; }
+     .nav-container { padding: 0.6rem 0.8rem; }
+     nav ul { gap: 0.3rem; }
+     nav a { padding: 0.4rem 0.7rem; font-size: 0.9rem; }
+     .about-wrap { gap: 1.5rem; }
+     .about-photo { width: 200px; height: 200px; }
+     .edu-item { padding: 1rem; min-height: 140px; }
+     .skill-card { min-height: 120px; padding: 1rem; }
+     .cert-card { padding: 0.7rem; }
+     .project-card { padding: 0.7rem; }
+     .contact-form { gap: 1rem; }
+     .social-links a { width: 60px; height: 60px; font-size: 1.5rem; }
+   }
+
 
    /* —— Generic Section Layout —— */
    section.page-section { position: relative; z-index: 2; padding: 6rem 1.2rem 4rem; min-height: 100vh; display: grid; place-items: center; text-align: center; }
@@ -585,4 +603,5 @@
 
    /* Responsive design for projects */
    @media(max-width: 1000px){ .projects-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
    @media(max-width: 560px){ .projects-grid { grid-template-columns: 1fr; } }
