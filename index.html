@@ -13,7 +13,7 @@
   <div class="nav-container">
     <div class="brand">Anshuman</div>
     <nav>
-      <ul>
+      <ul id="nav-menu">
         <li><a href="#about">About</a></li>
         <li><a href="#education">Education</a></li>
         <li><a href="#skills">Skills</a></li>
@@ -22,12 +22,15 @@
         <li><a href="#anonymous">Anonymous</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </nav>
   </div>
   <div id="nav-ghost" style="height:0"></div>
 </header>
-
-<!-- Sparkles canvas -->
 <canvas id="sparkles"></canvas>
 
 <!-- Floating circles -->
@@ -147,7 +150,23 @@
         <div class="label">Node.js</div>
       </div>
       <div class="skill-card tilt" style="--tiltMax:4;">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Tailwind_CSS_Logo.svg/1200px-Tailwind_CSS_Logo.svg.png" alt="Tailwind CSS logo" loading="lazy">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="JavaScript logo" loading="lazy">
+        <div class="label">JavaScript</div>
+      </div>
+      <div class="skill-card tilt" style="--tiltMax:4;">
+        <img src="https://www.vectorlogo.zone/logos/mongodb/mongodb-icon.svg" alt="MongoDB logo" loading="lazy">
+        <div class="label">MongoDB</div>
+      </div>
+      <div class="skill-card tilt" style="--tiltMax:4;">
+        <img src="https://git-scm.com/images/logos/downloads/Git-Logo-2Color.png" alt="Git logo" loading="lazy">
+        <div class="label">Git</div>
+      </div>
+      <div class="skill-card tilt" style="--tiltMax:4;">
+        <img src="https://www.vectorlogo.zone/logos/vercel/vercel-icon.svg" alt="Vercel logo" loading="lazy">
+        <div class="label">Vercel</div>
+      </div>
+      <div class="skill-card tilt" style="--tiltMax:4;">
+        <img src="https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg" alt="Tailwind CSS logo" loading="lazy">
         <div class="label">Tailwind</div>
       </div>
       
@@ -178,11 +197,55 @@
       </div>
       <div class="cert-card tilt" style="--tiltMax:3;">
         <div class="cert-media">
+          <img src="assets/certificates/Shadowfox.png" alt="ShadowFox certificate" loading="lazy">
+        </div>
+        <div class="cert-body">
+          <div class="cert-title">ShadowFox Certificate</div>
+          <div class="cert-meta">ShadowFox Web Development Internship • 01/10/25-31/10/25</div>
+        </div>
+      </div>
+      <div class="cert-card tilt" style="--tiltMax:3;">
+        <div class="cert-media">
+          <img src="assets/certificates/AWS AIML.png" alt="AWS AIML certificate" loading="lazy">
+        </div>
+        <div class="cert-body">
+          <div class="cert-title">AWS Training & Certification
+Fundamentals of Machine
+Learning and Artificial Intelligence</div>
+          <div class="cert-meta">Amazon Web Services • 15/05/2026</div>
+        </div>
+      </div>
+    </div>
+    <button id="toggleCertsBtn" class="btn cert-more-btn" type="button" aria-expanded="false" aria-controls="moreCertificates">More certificates</button>
+    <div id="moreCertificates" class="cert-grid cert-hidden">
+      <!-- Cosmic certificate is moved into the More section -->
+      <div class="cert-card tilt" style="--tiltMax:3;">
+        <div class="cert-media">
           <img src="assets/certificates/bits2bytes-cosmic-contour-2025.jpg" alt="BITS2BYTES 2K25 Certificate of Excellence" loading="lazy">
         </div>
         <div class="cert-body">
           <div class="cert-title">BITS2BYTES 2K25 Certificate of Excellence</div>
           <div class="cert-meta">1st Position in COSMIC CONTOUR • 15-17 Sep 2025 • Techno Bengal Institute of Technology</div>
+        </div>
+      </div>
+      <div class="cert-card tilt" style="--tiltMax:3;">
+        <div class="cert-media">
+          <img src="assets/certificates/AWS CLOUD.png" alt="AWS Cloud certificate" loading="lazy">
+        </div>
+        <div class="cert-body">
+          <div class="cert-title">AWS Training & Certification
+            AWS Cloud Practitioner
+            Essentials</div>
+          <div class="cert-meta">Amazon Web Services • 15/05/2026</div>
+        </div>
+      </div>
+      <div class="cert-card tilt" style="--tiltMax:3;">
+        <div class="cert-media">
+          <img src="assets/certificates/SAP Certificate.png" alt="SAP S/4 HANA Development certificate of participation" loading="lazy">
+        </div>
+        <div class="cert-body">
+          <div class="cert-title">SAP S/4 HANA Development</div>
+          <div class="cert-meta">Certificate of Participation • 01 Aug 2025 – 31 Jan 2026 • Techno India University, West Bengal</div>
         </div>
       </div>
     </div>
@@ -282,14 +345,19 @@
     </form>
     <div class="social-links">
       <h3>Connect with me</h3>
-      <a href="https://x.com/AnshumanBharat9" target="_blank" title="X (Twitter)"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/x.svg" alt="X" width="40" height="40"></a>
-      <a href="https://www.geeksforgeeks.org/user/bharatianlp2e/" target="_blank" title="Geeks for Geeks"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/geeksforgeeks.svg" alt="Geeks for Geeks" width="40" height="40"></a>
       <a href="https://www.linkedin.com/in/anshuman-bharati-465815290/" target="_blank" title="LinkedIn"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/linkedin.svg" alt="LinkedIn" width="40" height="40"></a>
+      <a href="https://x.com/AnshumanBharat9" target="_blank" title="X (Twitter)"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/x.svg" alt="X" width="40" height="40"></a>
       <a href="https://github.com/Anshuman-codes05" target="_blank" title="GitHub"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/github.svg" alt="GitHub" width="40" height="40"></a>
+      <a href="https://www.geeksforgeeks.org/user/bharatianlp2e/" target="_blank" title="Geeks for Geeks"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/geeksforgeeks.svg" alt="Geeks for Geeks" width="40" height="40"></a>
     </div>
   </div>
   <div class="circle"></div>
 </section>
+
+<!-- Footer Watermark -->
+<footer class="footer-watermark">
+  <p>&copy; 2025 Anshuman Bharati. All rights reserved.</p>
+</footer>
 
 <!-- Project Details Modal -->
 <div id="projectModal" class="modal">
@@ -330,6 +398,10 @@
   <span class="image-close" onclick="closeImageModal()">&times;</span>
 </div>
 
+<!-- Scroll to Top Button -->
+<button id="scrollToTop" class="scroll-to-top" title="Scroll to Top">↑</button>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <script src="script.js"></script>
 </body>
 </html>

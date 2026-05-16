@@ -163,6 +163,21 @@
    let snakeTimer, snake, dir, food, score;
    function startSnake(){
      const c = document.getElementById('snake'); if(!c) return; const ctx = c.getContext('2d');
+     const snakeArea = c.parentElement;
+     // Add controls only on mobile
+     if(window.innerWidth < 769 && !snakeArea.querySelector('.snake-controls')){
+       const controls = document.createElement('div');
+       controls.className = 'snake-controls';
+       controls.innerHTML = `
+         <button class="snake-btn" onclick="changeDirection('up')">↑</button>
+         <div>
+           <button class="snake-btn" onclick="changeDirection('left')">←</button>
+           <button class="snake-btn" onclick="changeDirection('right')">→</button>
+         </div>
+         <button class="snake-btn" onclick="changeDirection('down')">↓</button>
+       `;
+       snakeArea.insertBefore(controls, c.nextSibling);
+     }
      const w = c.width, h = c.height, size = 16, cols = Math.floor(w/size), rows = Math.floor(h/size);
      snake = [{x:5,y:5}], dir = {x:1,y:0}; food = spawn(); score = 0; updateSnakeStats();
      clearInterval(snakeTimer);
@@ -183,6 +198,12 @@
        else if(e.key==='ArrowDown'){ if(dir.y!==-1) dir={x:0,y:1}; e.preventDefault(); }
        else if(e.key==='ArrowLeft'){ if(dir.x!==1) dir={x:-1,y:0}; e.preventDefault(); }
        else if(e.key==='ArrowRight'){ if(dir.x!==-1) dir={x:1,y:0}; e.preventDefault(); }
+     }
+     window.changeDirection = (direction) => {
+       if(direction==='up' && dir.y!==1) dir={x:0,y:-1};
+       else if(direction==='down' && dir.y!==-1) dir={x:0,y:1};
+       else if(direction==='left' && dir.x!==1) dir={x:-1,y:0};
+       else if(direction==='right' && dir.x!==-1) dir={x:1,y:0};
      }
      function spawn(){ return { x: Math.floor(Math.random()*cols), y: Math.floor(Math.random()*rows) }; }
      function updateSnakeStats(){ const el = document.getElementById('snakeStats'); if(el) el.textContent = `Score: ${score}`; }
@@ -249,7 +270,7 @@
    // Test function to check if modal works
    function testImageModal() {
      console.log('Testing image modal...');
-     openImageModal('assets/projects/mood-tracker-screenshot.png');
+     openImageModal('https://raw.githubusercontent.com/Anshuman-codes05/Portfolio/main/Screenshot%202025-10-05%20130410.png');
    }
 
    // Close image modal when clicking outside of it
@@ -262,4 +283,85 @@
      if (event.target == imageModal) {
        closeImageModal();
      }
+   }
+
+   // Hamburger menu toggle
+   const hamburger = document.getElementById('hamburger');
+   const navMenu = document.getElementById('nav-menu');
+   if(hamburger && navMenu){
+     hamburger.addEventListener('click', () => {
+       navMenu.classList.toggle('active');
+       hamburger.classList.toggle('active');
+     });
+
+     // Close menu when link is clicked
+     navMenu.querySelectorAll('a').forEach(link => {
+       link.addEventListener('click', () => {
+         navMenu.classList.remove('active');
+         hamburger.classList.remove('active');
+       });
+     });
+   }
+
+   // Scroll to Top Button
+   const scrollToTopBtn = document.getElementById('scrollToTop');
+   if (scrollToTopBtn) {
+     window.addEventListener('scroll', () => {
+       if (window.scrollY > 300) {
+         scrollToTopBtn.classList.add('show');
+       } else {
+         scrollToTopBtn.classList.remove('show');
+       }
+     });
+     scrollToTopBtn.addEventListener('click', () => {
+       window.scrollTo({ top: 0, behavior: 'smooth' });
+     });
+   }
+
+   // More button for hidden certificates
+   const toggleCertsBtn = document.getElementById('toggleCertsBtn');
+   const moreCertificates = document.getElementById('moreCertificates');
+   if (toggleCertsBtn && moreCertificates) {
+     toggleCertsBtn.addEventListener('click', () => {
+       const hidden = moreCertificates.classList.toggle('cert-hidden');
+       toggleCertsBtn.textContent = hidden ? 'More certificates' : 'Show fewer certificates';
+       toggleCertsBtn.setAttribute('aria-expanded', hidden ? 'false' : 'true');
+     });
+   }
+
+   // Contact form handling with EmailJS
+   if (typeof emailjs !== 'undefined') {
+     emailjs.init('YOUR_PUBLIC_KEY'); // Replace with your EmailJS public key
+   }
+
+   const contactForm = document.querySelector('.contact-form');
+   if(contactForm){
+     contactForm.addEventListener('submit', (e) => {
+       e.preventDefault();
+
+       // Get form data
+       const formData = new FormData(contactForm);
+       const data = {
+         from_name: formData.get('name'),
+         from_email: formData.get('email'),
+         subject: formData.get('subject'),
+         message: formData.get('message'),
+         to_email: 'your-email@example.com' // Replace with your email
+       };
+
+       // Send email
+       if (typeof emailjs === 'undefined') {
+         alert('Email service is not available. Please try again later.');
+         return;
+       }
+       emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', data) // Replace with your service and template IDs
+         .then(() => {
+           alert('Message sent successfully!');
+           contactForm.reset();
+         })
+         .catch((error) => {
+           console.error('Error:', error);
+           alert('Failed to send message. Please try again.');
+         });
+     });
    }
